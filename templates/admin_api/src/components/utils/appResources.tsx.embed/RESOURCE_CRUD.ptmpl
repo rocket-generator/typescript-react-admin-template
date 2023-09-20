@@ -1,0 +1,13 @@
+{{- range .Entities}}
+  {
+    create: "/{{ .Name.Plural.Snake }}/create",
+    edit: "/{{ .Name.Plural.Snake }}/:id/edit",
+    list: "/{{ .Name.Plural.Snake }}",
+    meta: {
+      icon: <IconUsers />,
+      label: "{{ .Name.Plural.Title }}",
+    },
+    name: "{{ .Name.Plural.Snake }}",
+    show: "/{{ .Name.Plural.Snake }}/:id",
+  },
+{{- end }}

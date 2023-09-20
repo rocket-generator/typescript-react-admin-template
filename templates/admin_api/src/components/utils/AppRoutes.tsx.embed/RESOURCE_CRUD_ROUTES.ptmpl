@@ -1,0 +1,10 @@
+{{- range .Entities}}
+    (
+      <Route key="{{ .Name.Plural.Snake }}" path="/{{ .Name.Plural.Snake }}">
+        <Route element={<{{ .Name.Singular.Title }}CreatePage/>} path="create"/>
+        <Route element={<{{ .Name.Singular.Title }}ListPage/>} index/>
+        <Route element={<{{ .Name.Singular.Title }}EditPage/>} path=":id/edit"/>
+        <Route element={<{{ .Name.Singular.Title }}ShowPage/>} path=":id"/>
+      </Route>
+    ),
+{{- end }}

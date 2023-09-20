@@ -10,47 +10,56 @@ import { DashboardPage } from "src/components/pages/dashboard"
 import { LoginPage } from "src/components/pages/login"
 
 import { AdminUserListPage } from "src/components/pages/adminUsers/AdminUserListPage"
-import { AdminUserEditPage } from "../pages/adminUsers/AdminUserEditPage.tsx";
-import { AdminUserCreatePage } from "../pages/adminUsers/AdminUserCreatePage.tsx";
-import { AdminUserShowPage } from "../pages/adminUsers/AdminUserShowPage.tsx";
+import { AdminUserEditPage } from "src/components/pages/adminUsers/AdminUserEditPage.tsx";
+import { AdminUserCreatePage } from "src/components/pages/adminUsers/AdminUserCreatePage.tsx";
+import { AdminUserShowPage } from "src/components/pages/adminUsers/AdminUserShowPage.tsx";
 
+/* [RESOURCE_CRUD_IMPORT] */
 
 export const AppRoutes = (): JSX.Element => {
+  const resourceRoutes: JSX.Element[] = [
+    (
+      <Route key="admin_users" path="/admin_users">
+        <Route element={<AdminUserCreatePage/>} path="create"/>
+        <Route element={<AdminUserListPage/>} index/>
+        <Route element={<AdminUserEditPage/>} path=":id/edit"/>
+        <Route element={<AdminUserShowPage/>} path=":id"/>
+      </Route>
+    ),
+    /* [RESOURCE_CRUD_ROUTES] */
+  ]
+
   return (
     <Routes>
       <Route
         element={
-          <Authenticated fallback={<CatchAllNavigate to="/login" />} v3LegacyAuthProviderCompatible>
+          <Authenticated fallback={<CatchAllNavigate to="/login"/>} v3LegacyAuthProviderCompatible>
             <ThemedLayoutV2
               // TODO impl Header component
               // Header={() => <Header />}
-              Title={({ collapsed }) => <AppTitle collapsed={collapsed} />}
+              Title={({collapsed}) => <AppTitle collapsed={collapsed}/>}
             >
-              <Outlet />
+              <Outlet/>
             </ThemedLayoutV2>
           </Authenticated>
         }
       >
-        <Route element={<DashboardPage />} index />
-        <Route path="/admin_users">
-          <Route element={<AdminUserCreatePage />} path="create" />
-          <Route element={<AdminUserListPage />} index />
-          <Route element={<AdminUserEditPage />} path=":id/edit" />
-          <Route element={<AdminUserShowPage />} path=":id" />
-        </Route>
+        <Route element={<DashboardPage/>} index/>
+
+        {resourceRoutes}
 
         {/* fallback all 404 paths */}
-        <Route element={<ErrorComponent />} path="*" />
+        <Route element={<ErrorComponent/>} path="*"/>
       </Route>
 
       <Route
         element={
-          <Authenticated fallback={<Outlet />}>
-            <NavigateToResource />
+          <Authenticated fallback={<Outlet/>}>
+            <NavigateToResource/>
           </Authenticated>
         }
       >
-        <Route element={<LoginPage />} path="/login" />
+        <Route element={<LoginPage/>} path="/login"/>
       </Route>
     </Routes>
   )

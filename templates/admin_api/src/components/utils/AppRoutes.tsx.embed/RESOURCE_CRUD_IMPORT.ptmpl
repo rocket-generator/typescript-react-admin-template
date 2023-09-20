@@ -1,0 +1,6 @@
+{{- range .Entities}}
+import { {{ .Name.Singular.Title }}ListPage } from "src/components/pages/{{ .Name.Plural.Camel }}/{{ .Name.Singular.Title }}ListPage"
+import { {{ .Name.Singular.Title }}EditPage } from "src/components/pages/{{ .Name.Plural.Camel }}/{{ .Name.Singular.Title }}EditPage.tsx";
+import { {{ .Name.Singular.Title }}CreatePage } from "src/components/pages/{{ .Name.Plural.Camel }}/{{ .Name.Singular.Title }}CreatePage.tsx";
+import { {{ .Name.Singular.Title }}ShowPage } from "src/components/pages/{{ .Name.Plural.Camel }}/{{ .Name.Singular.Title }}ShowPage.tsx";
+{{- end }}

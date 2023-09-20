@@ -21,4 +21,5 @@ export const appResources: ResourceProps[] = [
     name: "admin_users",
     show: "/admin_users/:id",
   },
+  /* [RESOURCE_CRUD] */
 ]
