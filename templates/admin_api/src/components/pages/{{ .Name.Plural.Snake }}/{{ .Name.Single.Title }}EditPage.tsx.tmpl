@@ -1,0 +1,38 @@
+import { Container, Text, TextInput, Title } from "@mantine/core"
+import { Edit, useForm } from "@refinedev/mantine"
+import type { Get{{ .Name.Singular.Title }}Response } from "src/external/apis/resources/adminUsers"
+
+const initialValues: Record<keyof Get{{ .Name.Singular.Title }}Response, ""> = {
+  created_at: "",
+  email: "",
+  id: "",
+  name: "",
+  updated_at: "",
+}
+
+export const {{ .Name.Singular.Title }}EditPage = (): JSX.Element => {
+  const { getInputProps, saveButtonProps } = useForm<Get{{ .Name.Singular.Title }}Response>({
+    initialValues,
+    validate: {
+    },
+  })
+
+  return (
+    <Edit canDelete saveButtonProps={saveButtonProps}>
+      <form>
+        <Container pt={8}>
+          <Title order={5}>ID</Title>
+          <Text mt="xs">{getInputProps("id").value}</Text>
+        </Container>
+{{- range .Columns}}
+{{- if not .APIUpdatable }}
+        <Container pt={8}>
+          <Title order={5}>{{ .Name.Default.Title }}</Title>
+          <TextInput placeholder="{{ .Name.Default.Title }}" {...getInputProps("{{ .Name.Original }}")} />
+        </Container>
+{{- end }}
+{{- end }}
+      </form>
+    </Edit>
+  )
+}

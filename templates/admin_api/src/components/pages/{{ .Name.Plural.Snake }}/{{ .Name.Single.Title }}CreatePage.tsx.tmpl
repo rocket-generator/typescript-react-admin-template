@@ -1,0 +1,35 @@
+import { TextInput, PasswordInput } from "@mantine/core"
+import { Create, useForm } from "@refinedev/mantine"
+import type { Post{{ .Name.Singular.Title }}RequestBody } from "src/external/apis/resources/adminUsers"
+
+const initialValues: Post{{ .Name.Singular.Title }}RequestBody = {
+  email: "",
+  name:  "",
+  password:  "",
+}
+
+export const {{ .Name.Singular.Title }}CreatePage = (): JSX.Element => {
+  const { getInputProps, saveButtonProps } =
+    useForm<Post{{ .Name.Singular.Title }}RequestBody>({
+      initialValues,
+      validate: {
+        name: (value: string) => (value.length < 2 ? "Too short name" : null),
+      },
+    })
+  return (
+    <Create saveButtonProps={saveButtonProps}>
+      <form>
+{{- range .Columns}}
+{{- if not .APIUpdatable }}
+        <TextInput
+          label="{{ .Name.Default.Title }}"
+          mt={8}
+          placeholder="{{ .Name.Default.Title }}"
+          {...getInputProps("{{ .Name.Original }}")}
+        />
+{{- end }}
+{{- end }}
+      </form>
+    </Create>
+  )
+}

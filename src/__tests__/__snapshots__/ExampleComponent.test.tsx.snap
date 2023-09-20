@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`example > renders correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <p>
+      Welcome to React!
+    </p>
+    <p>
+      This is an example of a React snapshot test.
+    </p>
+    <p>
+      wow
+    </p>
+  </div>
+</DocumentFragment>
+`;

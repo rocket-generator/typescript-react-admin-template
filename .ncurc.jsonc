@@ -1,0 +1,25 @@
+{
+  "$schema": "https://raw.githubusercontent.com/raineorshine/npm-check-updates/main/src/types/RunOptions.json",
+  "reject": [
+    // Sync with ".tool-versions"
+    "@types/node",
+    // Dependent on "@refinedev/mantine" version
+    "@emotion/react",
+    "@mantine/core",
+    "@mantine/form",
+    "@mantine/hooks",
+    "@mantine/notifications",
+    "@tabler/icons",
+    // Dependent on "@refinedev/react-router-v6" version
+    "react-router-dom",
+    // Dependent on "@refinedev/simple-rest" version
+    "axios",
+    // Waiting for vscode prettier plugin support
+    "@types/prettier",
+    "prettier",
+    // Dependent on "eslint-plugin-typescript-sort-keys" version. See https://github.com/infctr/eslint-plugin-typescript-sort-keys/pull/64
+    "@typescript-eslint/eslint-plugin",
+    "@typescript-eslint/parser"
+  ],
+  "upgrade": true
+}

@@ -1,0 +1,11 @@
+coverage
+dist
+misc
+public
+src/assets
+
+# No need to inspect because of copying from outside
+scripts/naming-convention-utils/
+
+# No need to inspect because of special code
+scripts/eslint-custom-rules/

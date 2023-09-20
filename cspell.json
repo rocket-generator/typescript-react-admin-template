@@ -1,0 +1,22 @@
+// cSpell Settings
+{
+  "version": "0.2",
+  "language": "en",
+  // words - list of words to be always considered correct
+  "words": [
+    "inferencer",
+    "kbar",
+    "mantine",
+    "ncurc",
+    "refinedev",
+    "rulesdir",
+    "tabler",
+    "tanstack",
+    "toplevel",
+    "toraq",
+    "traveller"
+  ],
+  // flagWords - list of words to be always considered incorrect
+  // This is useful for offensive words and common spelling errors.
+  "flagWords": []
+}

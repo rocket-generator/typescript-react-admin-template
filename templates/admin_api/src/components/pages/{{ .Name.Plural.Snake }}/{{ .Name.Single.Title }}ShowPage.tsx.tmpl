@@ -1,0 +1,42 @@
+import { Container, Text, Title } from "@mantine/core"
+import { useShow } from "@refinedev/core"
+import { Show } from "@refinedev/mantine"
+import type { Get{{ .Name.Singular.Title }}Response } from "src/external/apis/resources/adminUsers"
+
+export const {{ .Name.Singular.Title }}ShowPage = (): JSX.Element => {
+  const { queryResult } = useShow<Get{{ .Name.Singular.Title }}Response>()
+  const { data, isLoading } = queryResult
+  const record = data?.data
+
+  return (
+    <Show isLoading={isLoading}>
+      <Container>
+        <Title order={5}>ID</Title>
+        <Text mt="sm">{record?.id}</Text>
+      </Container>
+{{- range .Columns}}
+{{- if not .APIReturnable }}
+      <Container>
+        <Title mt="sm" order={5}>
+          {{ .Name.Default.Title }}
+        </Title>
+        <Text mt="sm">{record?.{{ .Name.Original }}}</Text>
+      </Container>
+{{- end }}
+{{- end }}
+      <Container>
+        <Title mt="sm" order={5}>
+          Created At
+        </Title>
+        <Text mt="sm">{record?.created_at}</Text>
+      </Container>
+
+      <Container>
+        <Title mt="sm" order={5}>
+          Updated At
+        </Title>
+        <Text mt="sm">{record?.updated_at}</Text>
+      </Container>
+    </Show>
+  )
+}
